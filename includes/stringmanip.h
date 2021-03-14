@@ -57,7 +57,12 @@ namespace KP{
 		if (src == Null || tag == Null || tag_replacement == Null) {
 			return INVALID_NULL_PTR_DETECTED;
 		}
-		
+		len_src = strlen(src);
+		len_new_src = strlen(new_src);
+		len_tag = strlen(tag);
+		len_tag_replacement = strlen(tag_replacement);
+	
+		return SUCCESS;
 	/**
 	 * how often does the string in tag occur in src? 
 	 * 
@@ -67,6 +72,20 @@ namespace KP{
 	 *         otherwise the number of times tag occurs in src
 	 */
 	int findNumbOccurrences(const char *src,  const char *tag);
+	len_src = strlen(src);
+	len_tag = strlen(tag);
+	int i = 0;
+	int j = 0;
+	while (i < len_src) {
+		if (j == len_tag) {
+			count += 1;
+		}
+		if (*(src+i) == tag[j]) {
+			j++;
+		}
+		else if (*(src+i) != tag[j]) {
+			j = 0;
+		}
 }
 
 #endif /* STRINGMANIP_H_ */
