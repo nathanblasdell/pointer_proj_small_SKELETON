@@ -32,7 +32,7 @@ namespace KP{
 	 * \return
 	 */
 	int amountOfMemoryToAllocateForNewString(int len_src, int numbTagsToReplace, int len_tag, int len_tag_replacement);
-	
+		return len_src + ((len_tag_replacement * numbTagsToReplace) - (len_tag * numbTagsToReplace)) + 1;
 	/**
 	 * If src,new_src, tag or tag_replacment are null then returns INVALID_NULL_PTR_DETECTED
 	 * 
@@ -54,7 +54,10 @@ namespace KP{
 	 * 		   SUCCESS everything went well, src contains the 
 	 */
 	int replace(const char *src, char *new_src, const char *tag, const char *tag_replacement);
-	
+		if (src == Null || tag == Null || tag_replacement == Null) {
+			return INVALID_NULL_PTR_DETECTED;
+		}
+		
 	/**
 	 * how often does the string in tag occur in src? 
 	 * 
