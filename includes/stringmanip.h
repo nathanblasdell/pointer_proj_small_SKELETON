@@ -82,12 +82,24 @@ namespace KP{
 			return INVALID_NULL_PTR_DETECTED;
 		}
 		len_src = strlen(src);
-		len_new_src = strlen(new_src);
 		len_tag = strlen(tag);
 		len_tag_replacement = strlen(tag_replacement);
 		int num_tags = findNumbOccurrences(src, tag);
 		int amountMemory = amountOfMemoryToAllocateForNewString(len_src, num_tags, len_tag, len_tag_replacement);
-		return SUCCESS;
+		*new_src = newsrc[amountMemory];
+		for (int i = 0; i < len_src; i++) {
+			if (*(src + i) == tag[0]) {
+				if (strncmp((src + i), tag, len_tag) == 0) {
+					new_src[i] = 
+				}
+				else {
+					
+				}
+			}
+			else {
+				
+		}
+	return SUCCESS;
 
 
 #endif /* STRINGMANIP_H_ */
