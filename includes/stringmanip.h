@@ -33,6 +33,30 @@ namespace KP{
 	 */
 	int amountOfMemoryToAllocateForNewString(int len_src, int numbTagsToReplace, int len_tag, int len_tag_replacement);
 		return len_src + ((len_tag_replacement * numbTagsToReplace) - (len_tag * numbTagsToReplace)) + 1;
+
+	/**
+	 * how often does the string in tag occur in src? 
+	 * 
+	 * \param src  initial char string
+	 * \param tag  the tag to search for
+	 * \return INVALID_NULL_PTR_DETECTED one or more of src, or tag is NULL
+	 *         otherwise the number of times tag occurs in src
+	 */
+	int findNumbOccurrences(const char *src,  const char *tag);
+	if (src == NULL || tag == NULL) {
+		return INVALID_NULL_PTR_DETECTED;
+	}
+	int len_src = strlen(src);
+	int len_tag = strlen(tag);
+	int count_occurrences = 0;
+	for (int i = 0; i < len_src; i++) {
+		if (*(src + i) == tag[0]) {
+			if (strncmp((src + i), tag, len_tag) == 0) {
+				count_occurrences++;
+			}
+		}
+	}
+	return count_occurrences;
 	/**
 	 * If src,new_src, tag or tag_replacment are null then returns INVALID_NULL_PTR_DETECTED
 	 * 
@@ -54,38 +78,16 @@ namespace KP{
 	 * 		   SUCCESS everything went well, src contains the 
 	 */
 	int replace(const char *src, char *new_src, const char *tag, const char *tag_replacement);
-		if (src == Null || tag == Null || tag_replacement == Null) {
+		if (src == NULL || tag == NULL || tag_replacement == NULL) {
 			return INVALID_NULL_PTR_DETECTED;
 		}
 		len_src = strlen(src);
 		len_new_src = strlen(new_src);
 		len_tag = strlen(tag);
 		len_tag_replacement = strlen(tag_replacement);
-	
+		int num_tags = findNumbOccurrences(src, tag);
+		int amountMemory = amountOfMemoryToAllocateForNewString(len_src, num_tags, len_tag, len_tag_replacement);
 		return SUCCESS;
-	/**
-	 * how often does the string in tag occur in src? 
-	 * 
-	 * \param src  initial char string
-	 * \param tag  the tag to search for
-	 * \return INVALID_NULL_PTR_DETECTED one or more of src, or tag is NULL
-	 *         otherwise the number of times tag occurs in src
-	 */
-	int findNumbOccurrences(const char *src,  const char *tag);
-	len_src = strlen(src);
-	len_tag = strlen(tag);
-	int i = 0;
-	int j = 0;
-	while (i < len_src) {
-		if (j == len_tag) {
-			count += 1;
-		}
-		if (*(src+i) == tag[j]) {
-			j++;
-		}
-		else if (*(src+i) != tag[j]) {
-			j = 0;
-		}
-}
+
 
 #endif /* STRINGMANIP_H_ */
