@@ -32,7 +32,6 @@ namespace KP{
 	 * \return
 	 */
 	int amountOfMemoryToAllocateForNewString(int len_src, int numbTagsToReplace, int len_tag, int len_tag_replacement);
-		return len_src + ((len_tag_replacement * numbTagsToReplace) - (len_tag * numbTagsToReplace)) + 1;
 
 	/**
 	 * how often does the string in tag occur in src? 
@@ -43,20 +42,7 @@ namespace KP{
 	 *         otherwise the number of times tag occurs in src
 	 */
 	int findNumbOccurrences(const char *src,  const char *tag);
-	if (src == NULL || tag == NULL) {
-		return INVALID_NULL_PTR_DETECTED;
-	}
-	int len_src = strlen(src);
-	int len_tag = strlen(tag);
-	int count_occurrences = 0;
-	for (int i = 0; i < len_src; i++) {
-		if (*(src + i) == tag[0]) {
-			if (strncmp((src + i), tag, len_tag) == 0) {
-				count_occurrences++;
-			}
-		}
-	}
-	return count_occurrences;
+
 	/**
 	 * If src,new_src, tag or tag_replacment are null then returns INVALID_NULL_PTR_DETECTED
 	 * 
@@ -78,28 +64,6 @@ namespace KP{
 	 * 		   SUCCESS everything went well, src contains the 
 	 */
 	int replace(const char *src, char *new_src, const char *tag, const char *tag_replacement);
-		if (src == NULL || tag == NULL || tag_replacement == NULL) {
-			return INVALID_NULL_PTR_DETECTED;
-		}
-		len_src = strlen(src);
-		len_tag = strlen(tag);
-		len_tag_replacement = strlen(tag_replacement);
-		int num_tags = findNumbOccurrences(src, tag);
-		int amountMemory = amountOfMemoryToAllocateForNewString(len_src, num_tags, len_tag, len_tag_replacement);
-		*new_src = newsrc[amountMemory];
-		for (int i = 0; i < len_src; i++) {
-			if (*(src + i) == tag[0]) {
-				if (strncmp((src + i), tag, len_tag) == 0) {
-					new_src[i] = 
-				}
-				else {
-					
-				}
-			}
-			else {
-				
-		}
-	return SUCCESS;
-
+}
 
 #endif /* STRINGMANIP_H_ */
